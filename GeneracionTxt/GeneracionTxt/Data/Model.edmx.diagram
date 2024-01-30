@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f7683e04ca184aefa4720f4601681f15" Name="Diagram1">
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.Ambiente" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.AperturaCierreTurno" Width="1.5" PointX="3.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.AsignacionCredito" Width="1.5" PointX="3" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.Cliente" Width="1.5" PointX="0.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.ClientePlaca" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.Cupones" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.Deposito" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.Despacho" Width="1.5" PointX="6" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.DetalleAperturaCierre" Width="1.5" PointX="6" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.Factura" Width="1.5" PointX="9" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.FacturaDetalle" Width="1.5" PointX="11.25" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.FORMA_PAGO" Width="1.5" PointX="0.75" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.IVA_Configurado" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.PromocionCliente" Width="1.5" PointX="3" PointY="41.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.Promociones" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.PtoVenta" Width="1.5" PointX="3" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.SRI_IMPUESTO_IVA" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.TipoComprobante" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.TipoEmision" Width="1.5" PointX="5.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.TipoFactura" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.TipoIdentificacion" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.TipoVenta" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.TotalTurnoFormaPago" Width="1.5" PointX="3" PointY="29.5" IsExpanded="true" />
+        <AssociationConnector Association="TRANSACTOR_BASEModel.fk_cabeceradetalle" ManuallyRouted="false" />
+        <AssociationConnector Association="TRANSACTOR_BASEModel.fk_despachoTurno" ManuallyRouted="false" />
+        <AssociationConnector Association="TRANSACTOR_BASEModel.fk_facturaTurno" ManuallyRouted="false" />
+        <AssociationConnector Association="TRANSACTOR_BASEModel.fk_ventaTurno" ManuallyRouted="false" />
+        <AssociationConnector Association="TRANSACTOR_BASEModel.fk_cliente_aisgnacion" ManuallyRouted="false" />
+        <AssociationConnector Association="TRANSACTOR_BASEModel.fk_cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="TRANSACTOR_BASEModel.fk_cliente_despacho" ManuallyRouted="false" />
+        <AssociationConnector Association="TRANSACTOR_BASEModel.fk_cliente_factura" ManuallyRouted="false" />
+        <AssociationConnector Association="TRANSACTOR_BASEModel.fk_Cliente_M" ManuallyRouted="false" />
+        <AssociationConnector Association="TRANSACTOR_BASEModel.fk_factura_detalle" ManuallyRouted="false" />
+        <AssociationConnector Association="TRANSACTOR_BASEModel.fk_formapagovent" ManuallyRouted="false" />
+        <AssociationConnector Association="TRANSACTOR_BASEModel.fkTurnoFormaPago" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.Producto" Width="1.5" PointX="10.375" PointY="4" />
+        <AssociationConnector Association="TRANSACTOR_BASEModel.fk_producto_despacho" />
+        <AssociationConnector Association="TRANSACTOR_BASEModel.fk_producto_factura" />
+        <EntityTypeShape EntityType="TRANSACTOR_BASEModel.Usuario" Width="1.5" PointX="10.375" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,740 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TRANSACTOR_BASEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ambiente">
+    <Key>
+      <PropertyRef Name="idAmbiente" />
+    </Key>
+    <Property Name="idAmbiente" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="codigo" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="idestado" Type="Decimal" Precision="2" Scale="0" />
+  </EntityType>
+  <EntityType Name="AperturaCierreTurno">
+    <Key>
+      <PropertyRef Name="idTurno" />
+    </Key>
+    <Property Name="idTurno" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="transac_Ab_Volumen" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="transac_Ab_Dolares" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="transac_Ci_Volumen" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="transac_Ci_Dolares" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="totalDespachos" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="totalDepositos" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="totalVolumen" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="totalDolares" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="Impresora" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FechaApertura" Type="DateTime" Precision="3" />
+    <Property Name="FechaCierre" Type="DateTime" Precision="3" />
+    <Property Name="totalDespachosEfectivo" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="totalDespachosTDebito" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="totalDespachosDineroElectronico" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="totalDespachosTPrepago" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="totalDespachosTCredito" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="totalDespachosCheque" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="TotalVentasCredito" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="TotalVentasPrepago" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="TotalVentasServicio" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="TotalVentasFueraLinea" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="TotalSistema" Type="Decimal" Precision="18" Scale="6" />
+    <NavigationProperty Name="DetalleAperturaCierre" Relationship="Self.fk_cabeceradetalle" FromRole="AperturaCierreTurno" ToRole="DetalleAperturaCierre" />
+    <NavigationProperty Name="Despacho" Relationship="Self.fk_despachoTurno" FromRole="AperturaCierreTurno" ToRole="Despacho" />
+    <NavigationProperty Name="Factura" Relationship="Self.fk_facturaTurno" FromRole="AperturaCierreTurno" ToRole="Factura" />
+    <NavigationProperty Name="PtoVenta" Relationship="Self.fk_ventaTurno" FromRole="AperturaCierreTurno" ToRole="PtoVenta" />
+  </EntityType>
+  <EntityType Name="AsignacionCredito">
+    <Key>
+      <PropertyRef Name="idAsignacionCredito" />
+    </Key>
+    <Property Name="idAsignacionCredito" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="idCliente" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="saldoAnterior" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="saldoNuevo" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="cupo" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+    <Property Name="usaurioreg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cliente" Relationship="Self.fk_cliente_aisgnacion" FromRole="AsignacionCredito" ToRole="Cliente" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="idCliente" />
+    </Key>
+    <Property Name="idCliente" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="identificacion" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+    <Property Name="idTipoIdentificacion" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="cupo" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="saldo" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="Nombre" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="nuevo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="codintCliente" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+    <Property Name="usaurioreg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FechaActualizacion" Type="DateTime" Precision="3" />
+    <Property Name="usaurio_act" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="FueEnviado" Type="Boolean" />
+    <Property Name="DiasCredito" Type="Decimal" Precision="4" Scale="0" />
+    <Property Name="env_contabilidad" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="env_noti_Email" Type="Boolean" />
+    <Property Name="envi_noti_SMS" Type="Boolean" />
+    <Property Name="env_noti_Whatsapp" Type="Boolean" />
+    <NavigationProperty Name="AsignacionCredito" Relationship="Self.fk_cliente_aisgnacion" FromRole="Cliente" ToRole="AsignacionCredito" />
+    <NavigationProperty Name="PtoVenta" Relationship="Self.fk_cliente" FromRole="Cliente" ToRole="PtoVenta" />
+    <NavigationProperty Name="Despacho" Relationship="Self.fk_cliente_despacho" FromRole="Cliente" ToRole="Despacho" />
+    <NavigationProperty Name="Factura" Relationship="Self.fk_cliente_factura" FromRole="Cliente" ToRole="Factura" />
+    <NavigationProperty Name="PromocionCliente" Relationship="Self.fk_Cliente_M" FromRole="Cliente" ToRole="PromocionCliente" />
+  </EntityType>
+  <EntityType Name="ClientePlaca">
+    <Key>
+      <PropertyRef Name="idCliente" />
+      <PropertyRef Name="idPlaca" />
+    </Key>
+    <Property Name="idCliente" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="idPlaca" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+  </EntityType>
+  <EntityType Name="Cupones">
+    <Key>
+      <PropertyRef Name="idPromocion" />
+      <PropertyRef Name="idCupones" />
+    </Key>
+    <Property Name="idPromocion" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="idCupones" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FechaImpresion" Type="DateTime" Precision="3" />
+    <Property Name="Descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="FechaSorteo" Type="DateTime" Precision="3" />
+    <Property Name="usuarioreg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idCliente" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="idFactura" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="imprimir" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="impresora" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="VecesImpreso" Type="Decimal" Precision="3" Scale="0" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+  </EntityType>
+  <EntityType Name="Deposito">
+    <Key>
+      <PropertyRef Name="idDeposito" />
+      <PropertyRef Name="idTurno" />
+      <PropertyRef Name="tipo" />
+    </Key>
+    <Property Name="idDeposito" Type="Decimal" Precision="28" Scale="0" Nullable="false" />
+    <Property Name="idTurno" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Billetes5" Type="Int32" />
+    <Property Name="Billetes10" Type="Int32" />
+    <Property Name="Billetes20" Type="Int32" />
+    <Property Name="Monedas" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="Valor" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="fecha" Type="DateTime" Precision="3" />
+    <Property Name="Impresora" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="Billetes50" Type="Int32" />
+    <Property Name="Billetes100" Type="Int32" />
+    <Property Name="Descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Imprimir" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="tipo" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Despacho">
+    <Key>
+      <PropertyRef Name="idDespacho" />
+    </Key>
+    <Property Name="idDespacho" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="idCliente" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="idFormaPago" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="idIVA" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="iva" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="MontoSIMP" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Tarifa" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="Subsidio" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="MontoDolares" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="unidadMedida" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="Precio" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="idProducto" Type="Decimal" Precision="4" Scale="0" />
+    <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="caneca" Type="Boolean" />
+    <Property Name="TipoVenta" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Dispensador" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="PuntoCarga" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="Manguera" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="FechaTransactor" Type="DateTime" Precision="3" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="Transaccion" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="idFactura" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="idusuadio" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="nombreVendedor" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="placa" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="saldo" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="kilometraje" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Imprimir" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="Impresora" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="env_contabilidad" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="env_factind" Type="Boolean" />
+    <Property Name="idTurno" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="kardexStock" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="fechaentero" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="AperturaCierreTurno" Relationship="Self.fk_despachoTurno" FromRole="Despacho" ToRole="AperturaCierreTurno" />
+    <NavigationProperty Name="Cliente" Relationship="Self.fk_cliente_despacho" FromRole="Despacho" ToRole="Cliente" />
+    <NavigationProperty Name="Producto" Relationship="TRANSACTOR_BASEModel.fk_producto_despacho" FromRole="Despacho" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="DetalleAperturaCierre">
+    <Key>
+      <PropertyRef Name="idTurno" />
+      <PropertyRef Name="idDetalle" />
+    </Key>
+    <Property Name="idTurno" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="idDetalle" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="idDispensador" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="idPuntoCarga" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="idManguera" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="Producto" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="Manguera" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="Volumen" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="Monto" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="Tipo" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="Precio" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="Mecanico" Type="Decimal" Precision="18" Scale="3" />
+    <NavigationProperty Name="AperturaCierreTurno" Relationship="Self.fk_cabeceradetalle" FromRole="DetalleAperturaCierre" ToRole="AperturaCierreTurno" />
+  </EntityType>
+  <EntityType Name="Factura">
+    <Key>
+      <PropertyRef Name="idFactura" />
+    </Key>
+    <Property Name="idFactura" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="idempresa" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="RucEmpresa" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+    <Property Name="idCliente" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="identificacion" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+    <Property Name="idTipoIdentificacion" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="Nombre" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="DireccionComprador" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="idFormaPago" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="idIVA" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="iva" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Subsidio" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="MontoSIMP" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Tarifa" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="MontoDolares" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="unidadMedida" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="PuntoEmision" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Establecimiento" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="secuencia" Type="Decimal" Precision="9" Scale="0" />
+    <Property Name="numerofactura" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="diasplazo" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="unidadtiempo" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="ambiente" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="tipo_emision" Type="Decimal" Precision="1" Scale="0" />
+    <Property Name="tipo_comprobante" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="ClaveAcceso" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Autorizacion" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="idVendedor" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Vendedor" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="Estado_documento" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="FechaAutorizacion" Type="DateTime" Precision="3" />
+    <Property Name="Placa" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="env_contabilidad" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="tipofactura_i" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Imprimir" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="Impresora" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="idPago" Type="Decimal" Precision="4" Scale="0" />
+    <Property Name="NombreInstitucionPago" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NumeroReferencia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="lote_tarjeta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="cuantia" Type="Boolean" />
+    <Property Name="idTurno" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="fechaentero" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="env_ARCH" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="AutorizacionDataFast" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="FechaDataFast" Type="DateTime" Precision="3" />
+    <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+    <Property Name="Observacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AperturaCierreTurno" Relationship="Self.fk_facturaTurno" FromRole="Factura" ToRole="AperturaCierreTurno" />
+    <NavigationProperty Name="Cliente" Relationship="Self.fk_cliente_factura" FromRole="Factura" ToRole="Cliente" />
+    <NavigationProperty Name="FacturaDetalle" Relationship="Self.fk_factura_detalle" FromRole="Factura" ToRole="FacturaDetalle" />
+  </EntityType>
+  <EntityType Name="FacturaDetalle">
+    <Key>
+      <PropertyRef Name="idFactura" />
+      <PropertyRef Name="idDetalle" />
+    </Key>
+    <Property Name="idFactura" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="idDetalle" Type="Decimal" Precision="3" Scale="0" Nullable="false" />
+    <Property Name="idProducto" Type="Decimal" Precision="4" Scale="0" />
+    <Property Name="Producto" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="DesProducto" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Cantidad" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Precio" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="MontoSIMP" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="iva" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="MontoDolares" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="Subsidio" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="SubsidioProducto" Type="Decimal" Precision="14" Scale="6" />
+    <Property Name="idIVA" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="Tarifa" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="CodigoPrincipal" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Factura" Relationship="Self.fk_factura_detalle" FromRole="FacturaDetalle" ToRole="Factura" />
+    <NavigationProperty Name="Producto1" Relationship="TRANSACTOR_BASEModel.fk_producto_factura" FromRole="FacturaDetalle" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="FORMA_PAGO">
+    <Key>
+      <PropertyRef Name="idFormaPago" />
+    </Key>
+    <Property Name="idFormaPago" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Alias" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="CodigoSRI" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="FECHA_INICIO" Type="DateTime" Precision="0" />
+    <Property Name="FECHA_FIN" Type="DateTime" Precision="0" />
+    <Property Name="Imprimir" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PuedeFacturar" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="TipoVenta" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PtoVenta" Relationship="Self.fk_formapagovent" FromRole="FORMA_PAGO" ToRole="PtoVenta" />
+    <NavigationProperty Name="TotalTurnoFormaPago" Relationship="Self.fkTurnoFormaPago" FromRole="FORMA_PAGO" ToRole="TotalTurnoFormaPago" />
+  </EntityType>
+  <EntityType Name="IVA_Configurado">
+    <Key>
+      <PropertyRef Name="idIVA" />
+    </Key>
+    <Property Name="idIVA" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="IVA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tarifa" Type="Decimal" Precision="6" Scale="0" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="FECHA_REG" Type="DateTime" Precision="3" />
+    <Property Name="USUARIO_REG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PromocionCliente">
+    <Key>
+      <PropertyRef Name="idCliente" />
+      <PropertyRef Name="idPromocion" />
+    </Key>
+    <Property Name="idCliente" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="idPromocion" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="ValorAcumulado" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="idUsuario" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Cliente" Relationship="Self.fk_Cliente_M" FromRole="PromocionCliente" ToRole="Cliente" />
+  </EntityType>
+  <EntityType Name="Promociones">
+    <Key>
+      <PropertyRef Name="idPromocion" />
+    </Key>
+    <Property Name="idPromocion" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Valor" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="Acumulable" Type="Boolean" />
+    <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
+    <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Desde" Type="DateTime" Precision="3" />
+    <Property Name="Hasta" Type="DateTime" Precision="3" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+  </EntityType>
+  <EntityType Name="PtoVenta">
+    <Key>
+      <PropertyRef Name="idPtoVenta" />
+    </Key>
+    <Property Name="idPtoVenta" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="idCliente" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="identificacion" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+    <Property Name="idTipoIdentificacion" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="Nombre" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="idFormaPago" Type="Decimal" Precision="6" Scale="0" />
+    <Property Name="PuntoCarga" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="saldo" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="MontoDolares" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="unidadMedida" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="caneca" Type="Boolean" />
+    <Property Name="TipoVenta" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="EstadoDocumento" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="idusuadio" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="nombreVendedor" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="placa" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="kilometraje" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Imprimir" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="Impresora" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="DiasPlazo" Type="Decimal" Precision="4" Scale="0" />
+    <Property Name="idTurno" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="tipocliente" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="AperturaCierreTurno" Relationship="Self.fk_ventaTurno" FromRole="PtoVenta" ToRole="AperturaCierreTurno" />
+    <NavigationProperty Name="Cliente" Relationship="Self.fk_cliente" FromRole="PtoVenta" ToRole="Cliente" />
+    <NavigationProperty Name="FORMA_PAGO" Relationship="Self.fk_formapagovent" FromRole="PtoVenta" ToRole="FORMA_PAGO" />
+  </EntityType>
+  <EntityType Name="SRI_IMPUESTO_IVA">
+    <Key>
+      <PropertyRef Name="ID_IMPUESTO_IVA" />
+    </Key>
+    <Property Name="ID_IMPUESTO_IVA" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="IVA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TARIFA" Type="Decimal" Precision="6" Scale="0" />
+    <Property Name="idESTADO" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="FECHA_ACT" Type="DateTime" Precision="3" />
+    <Property Name="USUARIO_ACT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TipoComprobante">
+    <Key>
+      <PropertyRef Name="idTipoComprobante" />
+    </Key>
+    <Property Name="idTipoComprobante" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="NombreComprobante" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="codigo" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+  </EntityType>
+  <EntityType Name="TipoEmision">
+    <Key>
+      <PropertyRef Name="idTipoEmision" />
+    </Key>
+    <Property Name="idTipoEmision" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="codigo" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+  </EntityType>
+  <EntityType Name="TipoFactura">
+    <Key>
+      <PropertyRef Name="idTipoFactura" />
+    </Key>
+    <Property Name="idTipoFactura" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="tipo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TipoIdentificacion">
+    <Key>
+      <PropertyRef Name="idTipoIdentificacion" />
+    </Key>
+    <Property Name="idTipoIdentificacion" Type="Decimal" Precision="2" Scale="0" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CodigoSRI" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+  </EntityType>
+  <EntityType Name="TipoVenta">
+    <Key>
+      <PropertyRef Name="idTipoVenta" />
+    </Key>
+    <Property Name="idTipoVenta" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="tipo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="idEstadoRep1" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="reporte2" Type="Decimal" Precision="2" Scale="0" />
+  </EntityType>
+  <EntityType Name="TotalTurnoFormaPago">
+    <Key>
+      <PropertyRef Name="idTurno" />
+      <PropertyRef Name="idDetalle" />
+    </Key>
+    <Property Name="idTurno" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="idDetalle" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+    <Property Name="idFormaPago" Type="Decimal" Precision="6" Scale="0" />
+    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Totales" Type="Decimal" Precision="18" Scale="6" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+    <NavigationProperty Name="FORMA_PAGO" Relationship="Self.fkTurnoFormaPago" FromRole="TotalTurnoFormaPago" ToRole="FORMA_PAGO" />
+  </EntityType>
+  <Association Name="fk_cabeceradetalle">
+    <End Role="AperturaCierreTurno" Type="Self.AperturaCierreTurno" Multiplicity="1" />
+    <End Role="DetalleAperturaCierre" Type="Self.DetalleAperturaCierre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AperturaCierreTurno">
+        <PropertyRef Name="idTurno" />
+      </Principal>
+      <Dependent Role="DetalleAperturaCierre">
+        <PropertyRef Name="idTurno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_despachoTurno">
+    <End Role="AperturaCierreTurno" Type="Self.AperturaCierreTurno" Multiplicity="0..1" />
+    <End Role="Despacho" Type="Self.Despacho" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AperturaCierreTurno">
+        <PropertyRef Name="idTurno" />
+      </Principal>
+      <Dependent Role="Despacho">
+        <PropertyRef Name="idTurno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_facturaTurno">
+    <End Role="AperturaCierreTurno" Type="Self.AperturaCierreTurno" Multiplicity="0..1" />
+    <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AperturaCierreTurno">
+        <PropertyRef Name="idTurno" />
+      </Principal>
+      <Dependent Role="Factura">
+        <PropertyRef Name="idTurno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ventaTurno">
+    <End Role="AperturaCierreTurno" Type="Self.AperturaCierreTurno" Multiplicity="0..1" />
+    <End Role="PtoVenta" Type="Self.PtoVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AperturaCierreTurno">
+        <PropertyRef Name="idTurno" />
+      </Principal>
+      <Dependent Role="PtoVenta">
+        <PropertyRef Name="idTurno" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cliente_aisgnacion">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+    <End Role="AsignacionCredito" Type="Self.AsignacionCredito" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="AsignacionCredito">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+    <End Role="PtoVenta" Type="Self.PtoVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="PtoVenta">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cliente_despacho">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+    <End Role="Despacho" Type="Self.Despacho" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="Despacho">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cliente_factura">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+    <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="Factura">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Cliente_M">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="PromocionCliente" Type="Self.PromocionCliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="idCliente" />
+      </Principal>
+      <Dependent Role="PromocionCliente">
+        <PropertyRef Name="idCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_factura_detalle">
+    <End Role="Factura" Type="Self.Factura" Multiplicity="1" />
+    <End Role="FacturaDetalle" Type="Self.FacturaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Factura">
+        <PropertyRef Name="idFactura" />
+      </Principal>
+      <Dependent Role="FacturaDetalle">
+        <PropertyRef Name="idFactura" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_formapagovent">
+    <End Role="FORMA_PAGO" Type="Self.FORMA_PAGO" Multiplicity="0..1" />
+    <End Role="PtoVenta" Type="Self.PtoVenta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FORMA_PAGO">
+        <PropertyRef Name="idFormaPago" />
+      </Principal>
+      <Dependent Role="PtoVenta">
+        <PropertyRef Name="idFormaPago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fkTurnoFormaPago">
+    <End Role="FORMA_PAGO" Type="Self.FORMA_PAGO" Multiplicity="0..1" />
+    <End Role="TotalTurnoFormaPago" Type="Self.TotalTurnoFormaPago" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FORMA_PAGO">
+        <PropertyRef Name="idFormaPago" />
+      </Principal>
+      <Dependent Role="TotalTurnoFormaPago">
+        <PropertyRef Name="idFormaPago" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TRANSACTOR_BASEEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ambiente" EntityType="Self.Ambiente" />
+    <EntitySet Name="AperturaCierreTurno" EntityType="Self.AperturaCierreTurno" />
+    <EntitySet Name="AsignacionCredito" EntityType="Self.AsignacionCredito" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="ClientePlaca" EntityType="Self.ClientePlaca" />
+    <EntitySet Name="Cupones" EntityType="Self.Cupones" />
+    <EntitySet Name="Deposito" EntityType="Self.Deposito" />
+    <EntitySet Name="Despacho" EntityType="Self.Despacho" />
+    <EntitySet Name="DetalleAperturaCierre" EntityType="Self.DetalleAperturaCierre" />
+    <EntitySet Name="Factura" EntityType="Self.Factura" />
+    <EntitySet Name="FacturaDetalle" EntityType="Self.FacturaDetalle" />
+    <EntitySet Name="FORMA_PAGO" EntityType="Self.FORMA_PAGO" />
+    <EntitySet Name="IVA_Configurado" EntityType="Self.IVA_Configurado" />
+    <EntitySet Name="PromocionCliente" EntityType="Self.PromocionCliente" />
+    <EntitySet Name="Promociones" EntityType="Self.Promociones" />
+    <EntitySet Name="PtoVenta" EntityType="Self.PtoVenta" />
+    <EntitySet Name="SRI_IMPUESTO_IVA" EntityType="Self.SRI_IMPUESTO_IVA" />
+    <EntitySet Name="TipoComprobante" EntityType="Self.TipoComprobante" />
+    <EntitySet Name="TipoEmision" EntityType="Self.TipoEmision" />
+    <EntitySet Name="TipoFactura" EntityType="Self.TipoFactura" />
+    <EntitySet Name="TipoIdentificacion" EntityType="Self.TipoIdentificacion" />
+    <EntitySet Name="TipoVenta" EntityType="Self.TipoVenta" />
+    <EntitySet Name="TotalTurnoFormaPago" EntityType="Self.TotalTurnoFormaPago" />
+    <AssociationSet Name="fk_cabeceradetalle" Association="Self.fk_cabeceradetalle">
+      <End Role="AperturaCierreTurno" EntitySet="AperturaCierreTurno" />
+      <End Role="DetalleAperturaCierre" EntitySet="DetalleAperturaCierre" />
+    </AssociationSet>
+    <AssociationSet Name="fk_despachoTurno" Association="Self.fk_despachoTurno">
+      <End Role="AperturaCierreTurno" EntitySet="AperturaCierreTurno" />
+      <End Role="Despacho" EntitySet="Despacho" />
+    </AssociationSet>
+    <AssociationSet Name="fk_facturaTurno" Association="Self.fk_facturaTurno">
+      <End Role="AperturaCierreTurno" EntitySet="AperturaCierreTurno" />
+      <End Role="Factura" EntitySet="Factura" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ventaTurno" Association="Self.fk_ventaTurno">
+      <End Role="AperturaCierreTurno" EntitySet="AperturaCierreTurno" />
+      <End Role="PtoVenta" EntitySet="PtoVenta" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cliente_aisgnacion" Association="Self.fk_cliente_aisgnacion">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="AsignacionCredito" EntitySet="AsignacionCredito" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cliente" Association="Self.fk_cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="PtoVenta" EntitySet="PtoVenta" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cliente_despacho" Association="Self.fk_cliente_despacho">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Despacho" EntitySet="Despacho" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cliente_factura" Association="Self.fk_cliente_factura">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Factura" EntitySet="Factura" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Cliente_M" Association="Self.fk_Cliente_M">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="PromocionCliente" EntitySet="PromocionCliente" />
+    </AssociationSet>
+    <AssociationSet Name="fk_factura_detalle" Association="Self.fk_factura_detalle">
+      <End Role="Factura" EntitySet="Factura" />
+      <End Role="FacturaDetalle" EntitySet="FacturaDetalle" />
+    </AssociationSet>
+    <AssociationSet Name="fk_formapagovent" Association="Self.fk_formapagovent">
+      <End Role="FORMA_PAGO" EntitySet="FORMA_PAGO" />
+      <End Role="PtoVenta" EntitySet="PtoVenta" />
+    </AssociationSet>
+    <AssociationSet Name="fkTurnoFormaPago" Association="Self.fkTurnoFormaPago">
+      <End Role="FORMA_PAGO" EntitySet="FORMA_PAGO" />
+      <End Role="TotalTurnoFormaPago" EntitySet="TotalTurnoFormaPago" />
+    </AssociationSet>
+    <EntitySet Name="Producto" EntityType="TRANSACTOR_BASEModel.Producto" />
+    <AssociationSet Name="fk_producto_despacho" Association="TRANSACTOR_BASEModel.fk_producto_despacho">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Despacho" EntitySet="Despacho" />
+    </AssociationSet>
+    <AssociationSet Name="fk_producto_factura" Association="TRANSACTOR_BASEModel.fk_producto_factura">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="FacturaDetalle" EntitySet="FacturaDetalle" />
+    </AssociationSet>
+    <EntitySet Name="Usuario" EntityType="TRANSACTOR_BASEModel.Usuario" />
+  </EntityContainer>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idProducto" Type="Decimal" Nullable="false" Precision="4" Scale="0" />
+    <Property Name="Precio" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="Descripcion" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="Simbolo" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="idColor" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="idTipo" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+    <Property Name="subsidio" Type="Decimal" Precision="14" Scale="6" />
+    <Property Name="idEstado" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+    <Property Name="CodigoPrincipal" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="CodigoAuxiliar" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="CodigoArch" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="DescripcionArch" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="CodigoBarras" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CodigoContifico" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PrecioNuevo" Type="Decimal" Precision="18" Scale="3" />
+    <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+    <Property Name="CambioPrecio" Type="Boolean" />
+    <NavigationProperty Name="Despacho" Relationship="TRANSACTOR_BASEModel.fk_producto_despacho" FromRole="Producto" ToRole="Despacho" />
+    <NavigationProperty Name="FacturaDetalle" Relationship="TRANSACTOR_BASEModel.fk_producto_factura" FromRole="Producto" ToRole="FacturaDetalle" />
+  </EntityType>
+  <Association Name="fk_producto_despacho">
+    <End Type="TRANSACTOR_BASEModel.Producto" Role="Producto" Multiplicity="0..1" />
+    <End Type="TRANSACTOR_BASEModel.Despacho" Role="Despacho" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="Despacho">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_producto_factura">
+    <End Type="TRANSACTOR_BASEModel.Producto" Role="Producto" Multiplicity="0..1" />
+    <End Type="TRANSACTOR_BASEModel.FacturaDetalle" Role="FacturaDetalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="FacturaDetalle">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="IdUsuario" />
+    </Key>
+    <Property Name="IdUsuario" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="clave" Type="String" Nullable="false" MaxLength="220" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="idEstado" Type="Decimal" Precision="2" Scale="0" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="usuario_reg" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fecha_registro" Type="DateTime" Precision="3" />
+    <Property Name="fecha_act" Type="DateTime" Precision="3" />
+    <Property Name="usuario_act" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idPerfil" Type="Decimal" Precision="4" Scale="0" />
+    <Property Name="CodigoAlterno" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>
